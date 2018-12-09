@@ -1,0 +1,22 @@
+{
+    "name": "bz4work/file-loader",
+    "description": "Loading files from url.",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension"],
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "bz4work",
+            "email": "bz4work@gmail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "~2.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "bz4work\\fileloader\\": "src",
+            "bootstrap": "bz4work\\fileloader\\Bootstrap"
+        }
+    }
+}
