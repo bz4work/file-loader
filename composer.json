@@ -10,13 +10,15 @@
             "email": "bz4work@gmail.com"
         }
     ],
-    "require": {
-        "yiisoft/yii2": "~2.0.0"
+    "require-dev": {
+        "codeception/codeception": "*"
     },
     "autoload": {
         "psr-4": {
-            "bz4work\\fileloader\\": "src",
-            "bootstrap": "bz4work\\fileloader\\Bootstrap"
+            "bz4work\\fileloader\\": "src"
         }
+    },
+    "extra": {
+        "bootstrap": "bz4work\\fileloader\\Bootstrap"
     }
 }
