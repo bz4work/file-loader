@@ -43,7 +43,12 @@ class ImagesFile implements FileInterface
     {
         $this->setType($image_type);
 
-        $this->resource = imagecreatefromstring($raw_file_data);
+        try{
+            $this->resource = imagecreatefromstring($raw_file_data);
+        }catch (\Exception $e){
+            throw new \Exception($e->getMessage());
+        }
+
         return $this;
     }
 
@@ -74,23 +79,6 @@ class ImagesFile implements FileInterface
     }
 
     /**
-     * Set file type.
-     *
-     * @param $type - string like 'image/jpg'
-     * @throws \Exception
-     */
-    private function setType($type)
-    {
-        list($mime, $extension) = explode('/', $type);
-
-        if (in_array($extension, $this->allowTypes)) {
-            $this->type = $extension;
-        } else {
-            throw new \Exception('Extension not supported.');
-        }
-    }
-
-    /**
      * Return file type.
      *
      * @return mixed
@@ -98,6 +86,37 @@ class ImagesFile implements FileInterface
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * Return file resource.
+     *
+     * @return resource
+     */
+    public function getResource()
+    {
+        return $this->resource;
+    }
+
+    /**
+     * Set file type.
+     *
+     * @param $type - string like 'image/jpg'
+     * @throws \Exception
+     */
+    private function setType($type)
+    {
+        if(empty($type) || !preg_match('[/]', $type)){
+            throw new \Exception('Type param not correct. Correct format like: \'image/jpg\'');
+        }
+
+        list($mime, $extension) = explode('/', $type);
+
+        if (in_array($extension, $this->allowTypes)) {
+            $this->type = $extension;
+        } else {
+            throw new \Exception('Extension not supported.');
+        }
     }
 
     /**

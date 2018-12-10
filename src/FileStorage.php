@@ -54,7 +54,7 @@ class FileStorage implements StorageInterface
         }
 
         if (!is_writable(dirname($this->save_path))) {
-            throw new \Exception('Destination folder not allowed to writable. Please check permissions. Or read README file.');
+            throw new \Exception('Destination folder not allowed to writable: ('.dirname($this->save_path).'). Please check permissions. Or read README file.');
         }
 
         if ($file->create($filename)) {//file created successful
@@ -62,6 +62,14 @@ class FileStorage implements StorageInterface
         } else {//file is not created
             return false;
         }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPrintPath()
+    {
+        return $this->print_path;
     }
 
     /**
@@ -89,13 +97,5 @@ class FileStorage implements StorageInterface
         $this->save_path = \Yii::getAlias('@app')
             .$this->config->get('path_main').$this->ds
             .$this->config->get('path').$this->ds;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPrintPath()
-    {
-        return $this->print_path;
     }
 }

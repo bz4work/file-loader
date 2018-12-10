@@ -47,7 +47,12 @@ In your view file:
 <img src="<?php echo $path; ?>" alt="some alt">
 ```
 
-Run tests:
+Run tests with coverage:
 ```php
-...
+./vendor/bin/codecept run unit --coverage-html
+```
+
+Run tests without coverage:
+```php
+./vendor/bin/codecept run unit
 ```
