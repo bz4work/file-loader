@@ -1,0 +1,27 @@
+actor: Tester
+paths:
+    tests: tests
+    output: tests/_output
+    data: tests/_data
+    support: tests/_support
+    envs: tests/_envs
+actor_suffix: Tester
+extensions:
+    enabled:
+        - Codeception\Extension\RunFailed
+settings:
+    bootstrap: _bootstrap.php
+    colors: true
+modules:
+    config:
+        Yii2:
+            configFile: 'tests/_data/app_config/test.php'
+            cleanup: false
+coverage:
+    enabled: true
+    include:
+        - src/*
+    exclude:
+        - src/Bootstrap.php
+        - src/config/*
+        - src/*Interface.php
