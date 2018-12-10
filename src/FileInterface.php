@@ -1,4 +1,5 @@
 <?php
+
 namespace bz4work\fileloader;
 
 /**

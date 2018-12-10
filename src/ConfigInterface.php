@@ -1,4 +1,5 @@
 <?php
+
 namespace bz4work\fileloader;
 
 /**
@@ -14,15 +15,6 @@ interface ConfigInterface
      * @return mixed
      */
     public function get($name);
-
-    /**
-     * Set config param.
-     *
-     * @param string $name
-     * @param $value
-     * @return mixed
-     */
-    public function set($name, $value);
 
     /**
      * Get all params;

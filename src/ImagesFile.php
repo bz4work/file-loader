@@ -8,10 +8,16 @@ namespace bz4work\fileloader;
  */
 class ImagesFile implements FileInterface
 {
+    /** @var array $allowTypes */
     private $allowTypes;
+
+    /** @var ConfigInterface $config */
     private $config;
 
+    /** @var string $type */
     private $type;
+
+    /** @var resource $resource */
     private $resource;
 
     /**
@@ -51,7 +57,7 @@ class ImagesFile implements FileInterface
     {
         $success = false;
 
-        switch ($this->type){
+        switch ($this->type) {
             case 'jpg':
             case 'jpeg':
                 $success = imagejpeg($this->resource, $path, $this->config->get('jpg_quality'));
@@ -77,9 +83,9 @@ class ImagesFile implements FileInterface
     {
         list($mime, $extension) = explode('/', $type);
 
-        if(in_array($extension, $this->allowTypes)){
+        if (in_array($extension, $this->allowTypes)) {
             $this->type = $extension;
-        }else{
+        } else {
             throw new \Exception('Extension not supported.');
         }
     }
@@ -99,6 +105,7 @@ class ImagesFile implements FileInterface
      */
     private function init()
     {
+        //create array from config string
         $this->allowTypes = explode(',', $this->config->get('allow_types'));
     }
 }

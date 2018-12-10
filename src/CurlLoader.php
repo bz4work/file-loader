@@ -1,13 +1,17 @@
 <?php
+
 namespace bz4work\fileloader;
 
 /**
- * Class CurlLoader
+ * Class CurlLoader.
  * @package bz4work\fileloader
  */
 class CurlLoader implements LoaderInterface
 {
+    /** @var array $response_headers */
     private $response_headers;
+
+    /** @var string $response_body */
     private $response_body;
 
     /**

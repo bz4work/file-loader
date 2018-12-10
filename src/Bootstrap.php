@@ -1,17 +1,25 @@
 <?php
-namespace bz4work\fileloader;
 
+namespace bz4work\fileloader;
 
 use yii\base\BootstrapInterface;
 use yii\di\Instance;
 
+/**
+ * Class Bootstrap
+ * @package bz4work\fileloader
+ */
 class Bootstrap implements BootstrapInterface
 {
+    /** @var string $container_alias */
     private $container_alias = 'FileLoaderComponent';
 
+    /**
+     * @param \yii\base\Application $app
+     */
     public function bootstrap($app)
     {
-        $container = \Yii::$container;
+        $container = \Yii::$container;//get DI container
 
         $container->setSingletons([
             'bz4work\fileloader\IniConfig' => [

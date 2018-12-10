@@ -2,7 +2,10 @@
 
 namespace bz4work\fileloader;
 
-//Класс который отвечает за выбор места хранения.
+/**
+ * Class FileStorage
+ * @package bz4work\fileloader
+ */
 class FileStorage implements StorageInterface
 {
     /** @var $save_path - full path for save file */
@@ -51,7 +54,7 @@ class FileStorage implements StorageInterface
         }
 
         if (!is_writable(dirname($this->save_path))) {
-            throw new \Exception('Destination folder not allowed to writable. Please check permissions.');
+            throw new \Exception('Destination folder not allowed to writable. Please check permissions. Or read README file.');
         }
 
         if ($file->create($filename)) {//file created successful
@@ -70,7 +73,7 @@ class FileStorage implements StorageInterface
     private function getSavePath($file)
     {
         $uniq_name = uniqid() . '.' . $file->getType();
-        $this->new_file_name = $uniq_name;//save name for next action: printing
+        $this->new_file_name = $uniq_name;//save name for next action: output in browser
 
         $this->save_path .= $uniq_name;
 
